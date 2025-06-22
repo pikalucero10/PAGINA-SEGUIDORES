@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const API_KEY = '89fa5c12e497c6031bf995fb4095070e';
 
   const servicios = {
-    '1664': 'Seguidores Instagram',
+    '1001': 'Seguidores Instagram',
     '157': 'Likes Instagram',
     '3150': 'Vistas Instagram',
     '5312': 'Seguidores TikTok',
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const finalQuantity = serviceId === '1664'
+    const finalQuantity = serviceId === '1001'
       ? Math.ceil(quantity * 1.05)
       : quantity;
 
