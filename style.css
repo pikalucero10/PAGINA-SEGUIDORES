@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  background-size: cover;
+  z-index: 0;
+}
+
+.formulario-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 20px;
+}
+
+.card {
+  width: 700px;
+  background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(3,7,18,0.9));
+  border: 2px solid rgba(59,130,246,0.3);
+  border-radius: 2rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px rgba(59,130,246,0.3);
+  color: #e2e8f0;
+  animation: fadeSlide 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.3s ease;
+}
+
+@keyframes fadeSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 40px rgba(59,130,246,0.6);
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #38bdf8;
+  text-shadow: 0 0 8px rgba(56,189,248,0.4);
+  letter-spacing: 1px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #94a3b8;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-control,
+.form-select {
+  background-color: rgba(15,23,42,0.8);
+  border: 1px solid #3b82f6;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-control::placeholder {
+  color: #94a3b8;
+  opacity: 0.8;
+}
+
+.form-control:focus,
+.form-select:focus {
+  color: #ffffff;
+  background-color: rgba(15,23,42,0.95);
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 4px rgba(56,189,248,0.2);
+}
+
+button#submitButton {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: none;
+  border-radius: 1rem;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+button#submitButton:hover {
+  background: #1d6fa5;
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
