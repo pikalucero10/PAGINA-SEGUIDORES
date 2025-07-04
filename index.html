@@ -2,17 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Panel SMM - Enviar Orden</title>
+  <title>MI PANEL SMM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="style.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
 </head>
 <body>
-  <!-- FONDO DE PARTÍCULAS -->
+  <!-- Fondo de partículas -->
   <div id="particles-js"></div>
 
-  <!-- FORMULARIO CENTRADO ENCIMA -->
+  <!-- Formulario centrado -->
   <div class="formulario-wrapper d-flex justify-content-center align-items-center min-vh-100">
     <div class="card p-5 shadow-lg rounded-4">
       <h1 class="text-center mb-4">📦 Enviar Orden</h1>
@@ -20,21 +20,33 @@
         <div class="mb-3">
           <label for="service" class="form-label">Servicio</label>
           <select id="service" class="form-select" required>
-            <option value="1001" selected>Seguidores Instagram 1001 </option>
+            <option value="6428" selected>Seguidores Instagram</option>
             <option value="157">Likes Instagram</option>
             <option value="3150">Vistas Instagram</option>
-            <option value="5312">Seguidores TikTok id 5312</option>
+            <option value="5312">Seguidores TikTok</option>
             <option value="6374">Likes TikTok</option>
-            <option value="870">Vistas TikTok id-870</option>
+            <option value="870">Vistas TikTok</option>
           </select>
         </div>
         <div class="mb-3">
           <label for="link" class="form-label">Enlace</label>
-          <input type="url" id="link" class="form-control" placeholder="https://..." required />
+          <div class="input-group">
+            <input type="url" id="link" class="form-control" placeholder="https://..." required />
+            <button type="button" id="pasteLinkBtn" class="btn btn-outline-info">📋 Pegar</button>
+          </div>
         </div>
         <div class="mb-3">
-          <label for="quantity" class="form-label">Cantidad</label>
-          <input type="number" id="quantity" class="form-control" placeholder="Ej: 1000" required />
+          <label class="form-label">Cantidad</label>
+          <input type="number" id="quantity" class="form-control mb-2" placeholder="Ej: 1000" required />
+          <div class="d-flex flex-wrap gap-2">
+            <button type="button" class="btn btn-outline-info btn-sm cantidad-btn" data-value="110">110</button>
+            <button type="button" class="btn btn-outline-info btn-sm cantidad-btn" data-value="370">370</button>
+            <button type="button" class="btn btn-outline-info btn-sm cantidad-btn" data-value="550">550</button>
+            <button type="button" class="btn btn-outline-info btn-sm cantidad-btn" data-value="1080">1080</button>
+            <button type="button" class="btn btn-outline-info btn-sm cantidad-btn" data-value="1570">1570</button>
+            <button type="button" class="btn btn-outline-info btn-sm cantidad-btn" data-value="3050">3050</button>
+            <button type="button" class="btn btn-outline-info btn-sm cantidad-btn" data-value="5090">5090</button>
+          </div>
         </div>
         <button type="submit" id="submitButton" class="btn btn-primary w-100 fw-bold">
           <span id="btnText">Enviar Orden</span>
@@ -46,7 +58,10 @@
     </div>
   </div>
 
-  <!-- SCRIPTS -->
+  <!-- Toasts -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="script.js"></script>

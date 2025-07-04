@@ -8,12 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitButton = document.getElementById('submitButton');
   const btnText = document.getElementById('btnText');
   const spinner = document.getElementById('spinner');
+  const pasteLinkBtn = document.getElementById('pasteLinkBtn');
 
   const API_URL = 'https://smmcoder.com/api/v2';
   const API_KEY = '89fa5c12e497c6031bf995fb4095070e';
 
   const servicios = {
-    '1001': 'Seguidores Instagram',
+    '6428': 'Seguidores Instagram',
     '157': 'Likes Instagram',
     '3150': 'Vistas Instagram',
     '5312': 'Seguidores TikTok',
@@ -31,10 +32,28 @@ document.addEventListener('DOMContentLoaded', () => {
     volume: 0.3
   });
 
+  // Sonido al pasar el mouse por el botón
   submitButton.addEventListener('mouseenter', () => {
     hoverSound.play();
   });
 
+  // Botón "📋 Pegar" desde portapapeles
+  pasteLinkBtn.addEventListener('click', async () => {
+    try {
+      const texto = await navigator.clipboard.readText();
+      if (!texto) {
+        showError('❌ El portapapeles está vacío.');
+        return;
+      }
+      linkInput.value = texto;
+      pasteLinkBtn.classList.add('active');
+      setTimeout(() => pasteLinkBtn.classList.remove('active'), 150);
+    } catch (err) {
+      showError('⚠️ No se pudo acceder al portapapeles.');
+    }
+  });
+
+  // Envío del formulario
   orderForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -83,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showSuccess(`✅ Orden enviada correctamente - Cantidad: ${finalQuantity}`);
         showToast({ id: '-', service: servicios[serviceId], link, quantity: finalQuantity });
       }
+
       notificacion.play();
     } catch (err) {
       showSuccess(`✅ Orden enviada correctamente - Cantidad: ${finalQuantity}`);
@@ -108,23 +128,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showToast({ id, service, link, quantity }) {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.innerHTML = `
-      <strong>✅ Pedido recibido</strong><br>
-      ID: ${id}<br>
-      Servicio: ${service}<br>
-      Enlace: ${link}<br>
-      Cantidad: ${quantity}
+    const toastId = `toast-${Date.now()}`;
+    const toastHTML = `
+      <div id="${toastId}" class="toast align-items-center text-white bg-success border-0 mb-2" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            ✅ <strong>${service}</strong><br>
+            <small>ID: ${id} - Cantidad: ${quantity}</small><br>
+            <a href="${link}" class="text-light" target="_blank">${link}</a>
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+        </div>
+      </div>
     `;
-    document.body.appendChild(toast);
-    setTimeout(() => {
-      toast.classList.add('hide');
-      setTimeout(() => toast.remove(), 1000);
-    }, 4000);
+    const container = document.getElementById('toastContainer');
+    container.insertAdjacentHTML('beforeend', toastHTML);
+
+    const toastEl = document.getElementById(toastId);
+    const toast = new bootstrap.Toast(toastEl);
+    toast.show();
+
+    setTimeout(() => toastEl.remove(), 6000);
   }
 
-  // 🌌 Fondo con partículas usando particles.js
+  // Botones de cantidad rápida
+  document.querySelectorAll('.cantidad-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      quantityInput.value = btn.getAttribute('data-value');
+      btn.classList.add('active');
+      setTimeout(() => btn.classList.remove('active'), 150);
+    });
+  });
+
+  // Fondo con partículas
   particlesJS("particles-js", {
     particles: {
       number: { value: 160, density: { enable: true, value_area: 800 } },
@@ -165,14 +201,11 @@ document.addEventListener('DOMContentLoaded', () => {
     interactivity: {
       detect_on: "window",
       events: {
-        onhover: { enable: false, mode: "grab" },
+        onhover: { enable: false },
         onclick: { enable: true, mode: "push" },
         resize: true
       },
       modes: {
-        grab: { distance: 400, line_linked: { opacity: 1 } },
-        bubble: { distance: 250, size: 0, duration: 2, opacity: 0, speed: 3 },
-        repulse: { distance: 400, duration: 0.4 },
         push: { particles_nb: 4 },
         remove: { particles_nb: 2 }
       }
@@ -180,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     retina_detect: true
   });
 
-  // 💡 Efecto de luz sobre la tarjeta
+  // Efecto de luz sobre la tarjeta
   const card = document.querySelector('.card');
   card.addEventListener('mousemove', e => {
     const { left, top } = card.getBoundingClientRect();

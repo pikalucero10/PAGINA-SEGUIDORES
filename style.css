@@ -3,8 +3,9 @@
 body {
   margin: 0;
   font-family: 'Orbitron', sans-serif;
-  position: relative;
+  background-color: #000;
   overflow: hidden;
+  color: #e2e8f0;
 }
 
 #particles-js {
@@ -30,11 +31,11 @@ body {
   border-radius: 2rem;
   backdrop-filter: blur(12px);
   box-shadow: 0 0 30px rgba(59,130,246,0.3);
-  color: #e2e8f0;
   animation: fadeSlide 0.8s ease forwards;
   opacity: 0;
   transform: translateY(30px);
   transition: transform 0.3s ease;
+  color: #e2e8f0;
 }
 
 @keyframes fadeSlide {
@@ -70,8 +71,8 @@ h1 {
   border-radius: 1rem;
   padding: 0.75rem 1rem;
   color: #ffffff;
-  transition: all 0.3s ease;
   font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
 }
 
 .form-control::placeholder {
@@ -103,4 +104,43 @@ button#submitButton:hover {
   background: #1d6fa5;
   transform: scale(1.02);
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+.cantidad-btn {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 0.7rem;
+  transition: all 0.2s ease;
+}
+
+.cantidad-btn.active {
+  transform: scale(1.1);
+  background-color: #38bdf8 !important;
+  color: white !important;
+}
+
+.alert-success {
+  background-color: rgba(34,197,94,0.15) !important;
+  color: #86efac !important;
+  border: 1px solid #22c55e;
+}
+
+.alert-danger {
+  background-color: rgba(239,68,68,0.15) !important;
+  color: #f87171 !important;
+  border: 1px solid #ef4444;
+}
+
+.alert-info {
+  background-color: rgba(59,130,246,0.15) !important;
+  color: #60a5fa !important;
+  border: 1px solid #3b82f6;
+}
+
+.toast {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 12px rgba(255,255,255,0.05);
+  background-color: rgba(17,24,39,0.95);
+  color: white;
 }
